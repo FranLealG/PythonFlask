@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lotería mexicana</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}">
+</head>
+<body>
+    <h1>Lotería Mexicana</h1>
+    
+    <table>
+        {% if numy%3 == 0 %}
+            {% set varx = namespace(contx = 0) %}
+            {% set varc = namespace(contc = 0) %}
+            {% for x in range(numx) %}
+                {% set vary = namespace(conty = varx.contx) %}
+                <tr>
+                    {% for i in range(numy) %}
+                        {% set color = colores[vary.conty] %}
+                        <td class = {{color}}>{{nom_carta[varc.contc]}}</td>
+                        {% set vary.conty = vary.conty + 1  %}
+                        {% set varc.contc = varc.contc + 1 %}
+                        {% if vary.conty == 3: %}
+                            {% set vary.conty = 0 %}
+                        {% endif %}
+                    {% endfor %}
+                </tr>
+                {% set varx.contx = varx.contx +1 %}
+                {% if varx.contx == 3: %}
+                    {% set varx.contx = 0 %}
+                {% endif %}
+
+            {% endfor %}
+        
+        {% else %}
+            {% set var = namespace(cont = 0) %}
+            {% set varc = namespace(contc = 0) %}
+            {% for x in range(numx) %}
+                <tr>
+                    {% for i in range(numy) %}
+                        {% set color = colores[var.cont] %}
+                        <td class = {{color}}>{{nom_carta[varc.contc]}}</td>
+                        {% set var.cont = var.cont + 1 %}
+                        {% set varc.contc = varc.contc + 1 %}
+                        {% if var.cont == 3: %}
+                            {% set var.cont = 0 %}
+                        {% endif %}
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        {% endif %}
+    </table>
+
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lotería mexicana</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}">
+</head>
+<body>
+    <h1>Lotería Mexicana</h1>
+    <table>
+        {% set varc = namespace(contc = 0) %}
+        <tr> 
+            <td class="rosa">{{nom_carta[varc.contc]}}</td>
+            {% set varc.contc = varc.contc + 1 %}
+            <td class="celeste">{{nom_carta[varc.contc]}}</td>
+            {% set varc.contc = varc.contc + 1 %}
+            <td class="amarillo">{{nom_carta[varc.contc]}}</td>
+            {% set varc.contc = varc.contc + 1 %}
+            <td class="rosa">{{nom_carta[varc.contc]}}</td>
+            {% set varc.contc = varc.contc + 1 %}
+        </tr>
+        <tr>
+            <td class="celeste">{{nom_carta[varc.contc]}}</td>
+            {% set varc.contc = varc.contc + 1 %}
+            <td class="amarillo">{{nom_carta[varc.contc]}}</td>
+            {% set varc.contc = varc.contc + 1 %}
+            <td class="rosa">{{nom_carta[varc.contc]}}</td>
+            {% set varc.contc = varc.contc + 1 %}
+            <td class="celeste">{{nom_carta[varc.contc]}}</td>
+            {% set varc.contc = varc.contc + 1 %}
+        </tr>
+        <tr>
+            <td class="amarillo">{{nom_carta[varc.contc]}}</td>
+            {% set varc.contc = varc.contc + 1 %}
+            <td class="rosa">{{nom_carta[varc.contc]}}</td>
+            {% set varc.contc = varc.contc + 1 %}
+            <td class="celeste">{{nom_carta[varc.contc]}}</td>
+            {% set varc.contc = varc.contc + 1 %}
+            <td class="amarillo">{{nom_carta[varc.contc]}}</td>
+            {% set varc.contc = varc.contc + 1 %}
+        </tr>
+        <tr>
+            <td class="rosa">{{nom_carta[varc.contc]}}</td>
+            {% set varc.contc = varc.contc + 1 %}
+            <td class="celeste">{{nom_carta[varc.contc]}}</td>
+            {% set varc.contc = varc.contc + 1 %}
+            <td class="amarillo">{{nom_carta[varc.contc]}}</td>
+            {% set varc.contc = varc.contc + 1 %}
+            <td class="rosa">{{nom_carta[varc.contc]}}</td>
+            {% set varc.contc = varc.contc + 1 %}
+        </tr>
+    </table>
+
+</body>
+</html>
