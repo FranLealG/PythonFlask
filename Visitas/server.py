@@ -31,8 +31,12 @@ def visita_personalizada():
 def destruir():
     if 'eliminar' in session:
         session['eliminar'] += 1
-    
     session.pop('contador', None)
+    return redirect("/")
+
+@app.route("/reiniciar")
+def reiniciar():
+    session.clear()
     return redirect("/")
 
 if __name__ == "__main__":
