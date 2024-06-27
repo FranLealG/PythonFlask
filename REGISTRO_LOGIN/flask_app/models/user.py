@@ -3,6 +3,7 @@ from flask import flash #flash es el encargado de mostrar los mensajes
 
 import re #Expresiones Regulares | mach con un patron de texto
 EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$') #Expresion regular de email
+PASSWORD_REGEX = re.compile(r'^(?=.*[A-Z])(?=.*\d).{6,}$')
 
 class User:
     def __init__(self, data):
@@ -52,11 +53,15 @@ class User:
         if len(form['last_name']) < 2:
             flash('Tu apellido debe tener al menos 2 caracteres', 'register')
             is_valid =  False
-
-        if len(form['password']) < 6:
-            flash('Tu contraseña debe tener al menos 6 caracteres', 'register')
-            is_valid =  False
         
+        #BONUS PLATA - validar que la contraseña tenga una mayus y un numero
+        if len(form['password']) < 8:
+            flash('Tu contraseña debe tener al menos 8 caracteres', 'register')
+            is_valid =  False
+        elif not PASSWORD_REGEX.match(form['password']):
+            flash('Tu contraseña debe contener al menos una mayúscula y un número', 'register')
+            is_valid =  False
+                
         #validar que el correo sea único
         query = 'select * from users where email = %(email)s;'
         result = connectToMySQL('login_registro').query_db(query, form)
